@@ -1,0 +1,45 @@
+# Disable directory browsing
+# Options -Indexes
+Options +FollowSymLinks
+
+# Disable caching
+<IfModule mod_headers.c>
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+  Header set Pragma "no-cache"
+  Header set Expires 0
+</IfModule>
+
+# Restrict access to this particular "htaccess" file
+<FilesMatch "^\.htaccess">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # No access to the files and folders starting with "."
+  RedirectMatch 404 /\..*$
+  # RewriteRule ^/?\..*$ %{REQUEST_SCHEME}://%{HTTP_HOST}/?
+
+  # Remove ".php" and ".html" extensions from URL
+  # RewriteRule ^(.*).html$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [L,R=301,QSA]
+  # RewriteRule ^(.*).htm$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [L,R=301,QSA]
+  # RewriteRule ^(.*).php$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [L,R=301,QSA]
+  # RewriteRule ^(.*).xml$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [L,R=301,QSA]
+  # -------------------------------
+  RewriteCond %{REQUEST_FILENAME}.php -f
+  RewriteRule ^ %{REQUEST_URI}.php [NC,QSA]
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^ %{REQUEST_URI}.html [NC,QSA]
+  RewriteCond %{REQUEST_FILENAME}.xml -f
+  RewriteRule ^ %{REQUEST_URI}.xml [NC,QSA]
+  # -------------------------------
+  # RewriteRule (^.*)(index).*$ %{REQUEST_SCHEME}://%{HTTP_HOST}/$1 [NC]
+
+  # This piece of rules redirects paths to a single index.php file — but visually address doesn't change!
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.php [L,QSA]
+
+</IfModule>

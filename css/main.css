@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+body {
+  background-color: #fcfcfc;
+  background-image: linear-gradient(to bottom, #edf1f8, #fcfcfc);
+  background-size: 100% 100px;
+  background-repeat: no-repeat;
+  margin: 50px 10px;
+  font-size: 9pt;
+}
+
+.browse, .chat {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.current-location-title {
+  margin-bottom: 20px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.current-location-title a.no-text {
+  font-size: 0;
+}
+.current-location-title .back-button {
+  display: inline-block;
+  background: url('../images/back.svg') no-repeat center center;
+  background-size: contain;
+  height: 32px;
+  width: 32px;
+  margin-left: 2px;
+  margin-right: 8px;
+  filter: drop-shadow(0 2px 2px #004c91);
+  transition: all .75s;
+  cursor: pointer;
+}
+  .current-location-title .back-button:hover {
+    filter: drop-shadow(0 2px 2px #004c91) brightness(1.2);
+  }
+  .current-location-title .back-button:active {
+    transition: all .2s;
+    filter: drop-shadow(0 2px 2px #004c91) brightness(.8);
+  }
+.current-location-title span {
+  color: #1e791d;
+  font-size: 14pt;
+  line-height: 1em;
+}
+.browse .list-body {
+  /*
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  */
+}
+.browse .list-item {
+  display: inline-block;
+  padding: 2px 4px;
+  border-color: transparent;
+  border-width: 1px;
+  border-radius: 2px;
+  border-style: solid;
+  text-align: center;
+  width: 106px;
+  overflow: hidden;
+  vertical-align: top;
+}
+.browse a:hover .list-item {
+  border-color: #b6d3f6;
+  background-image: linear-gradient(to bottom, #f1f3f6, #e8eef6 70%, #e6edf6);
+  box-shadow: inset 0 0 1px 1px #eef3f9;
+}
+.browse a:active .list-item {
+  border-color: #8aacd3;
+  background-image: linear-gradient(to bottom, #ddecfc, #c4ddfc 70%, #c1dbfc);
+  box-shadow: inset 0 0 1px 1px #e9f2fc;
+}
+.browse .list-item span {
+  display: block;
+  word-wrap: break-word;
+}
+  .browse .list-item.back span {
+    font-style: italic;
+  }
+.browse .list-item img {
+  width: 100%;
+}
+
+.chat .message {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+.chat .message .avatar {
+  height: 36px;
+  min-width: 36px;
+  margin-right: 6px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .1);
+}
+.chat .message .message-body {
+}
+.chat .message .message-body .author {
+  font-weight: bold;
+}
+.chat .message .message-body .message-content {
+  word-break: break-all;
+}
+.chat .message .message-body .attachments .attachment-item {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 5px;
+  border-radius: 4px;
+  max-width: 128px;
+  width: 100%;
+}
